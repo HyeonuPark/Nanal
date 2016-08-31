@@ -1,0 +1,4 @@
+*.log
+public
+local
+node_modules
