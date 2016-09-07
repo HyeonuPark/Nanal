@@ -1,7 +1,15 @@
 import React from 'react'
 
-export default class App extends React.Component {
-  render () {
-    return <h1>It works!</h1>
-  }
+import {cViewport} from 'src/css/root.css'
+
+const RootView = ({children}) => (
+  <div className={cViewport}>
+    {children}
+  </div>
+)
+
+RootView.propTypes = {
+  children: React.PropTypes.element.isRequired,
 }
+
+export default RootView

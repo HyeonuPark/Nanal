@@ -1,25 +1,15 @@
 import React from 'react'
-import {Router, Route, browserHistory} from 'react-router'
-import {Provider} from 'react-redux'
-import {createStore} from 'redux'
+import {browserHistory, Router, Route, IndexRoute} from 'react-router'
 
-import reducer from './state/reducer'
-
-import RootView from './view/root'
-
-const prevDataString = localStorage.NANAL_DATA
-const prevData = prevDataString ? JSON.parse(prevDataString) : void 0
-
-const store = createStore(reducer, prevData)
-
-window.onbeforeunload = () => {
-  localStorage.NANAL_DATA = JSON.stringify(store.getState())
-}
+import Root from './view/root.js'
+import TimeTable from './view/timetable.js'
+// import EditSchedule from './view/edit-schedule.js'
 
 export default () => (
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path='/' component={RootView} />
-    </Router>
-  </Provider>
+  <Router history={browserHistory}>
+    <Route path='/' component={Root}>
+      <IndexRoute component={TimeTable} />
+      {/* <Route path='/schedule/:id' component={EditSchedule} /> */}
+    </Route>
+  </Router>
 )

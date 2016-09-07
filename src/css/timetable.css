@@ -1,0 +1,55 @@
+
+.cTimeTable {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.cRow {
+  flex-basis: 0;
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cRowHead {
+  width: 100%;
+  height: 15%;
+  background-color: color(cyan alpha(30%));
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cElement {
+  width: 100%;
+  flex-basis: 0;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cElement > * {
+  margin: 0;
+  padding: 0;
+}
+
+.cEmpty {
+  background-color: gray(240);
+}
+
+.cToday .cEmpty {
+  background-color: yellow;
+}
+
+.cSchedule {
+  background-color: color(green alpha(-50%));
+}
+
+.cToday .cSchedule {
+  background-color: lime;
+}

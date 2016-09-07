@@ -1,10 +1,13 @@
 'use strict'
 
 const path = require('path')
-const webpack = require('webpack')
+const cssimport = require('postcss-import')
 const cssnext = require('postcss-cssnext')
+const reporter = require('postcss-reporter')
 
-module.exports = {
+const cwd = process.cwd()
+
+module.exports = opt => ({
   entry: path.join(process.cwd(), 'src/js/index.js'),
   output: {
     filename: 'bundle.js',
@@ -12,7 +15,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      src: path.join(process.cwd(), 'src'),
+      src: path.join(cwd, 'src'),
     },
   },
   module: {
@@ -20,24 +23,18 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: [['es2015', {modules: false}], 'stage-0', 'react'],
-        },
+        loader: 'babel',
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader',
+        loader: opt.cssLoader,
       },
       {
         test: /\.(woff2?|ttf|eot|svg|png|jpe?g|gif|html)(\?.+)?$/,
         loader: 'file?name=[name].[ext]',
       },
     ],
-  },/*
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.DedupePlugin(),
-  ],*/
-  postcss: () => [cssnext],
-}
+  },
+  plugins: opt.plugins,
+  postcss: () => [cssimport(), cssnext(), reporter()],
+})
