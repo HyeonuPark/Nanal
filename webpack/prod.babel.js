@@ -9,6 +9,7 @@ const config = require('./base.babel.js')
 const extractCss = new ExtractTextPlugin('[name].[contenthash].css')
 
 module.exports = config({
+  entry: [],
   cssLoader: extractCss.extract({
     loader: 'css?modules!postcss',
     fallbackLoader: 'style',
