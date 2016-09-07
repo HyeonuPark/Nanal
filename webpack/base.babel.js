@@ -8,7 +8,10 @@ const reporter = require('postcss-reporter')
 const cwd = process.cwd()
 
 module.exports = opt => ({
-  entry: path.join(process.cwd(), 'src/js/index.js'),
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080/',
+    path.join(process.cwd(), 'src/js/index.js'),
+  ],
   output: {
     filename: 'bundle.js',
     path: './public',

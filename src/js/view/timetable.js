@@ -10,10 +10,12 @@ const pt = React.PropTypes
 
 const msInADay = 1000 * 60 * 60 * 24
 
+const randomColor = () => `#${Math.floor(Math.random() * (2 ** 24)).toString(16)}`
+
 const EmptyCell = ({len}) => (
   <div
     className={`${cElement} ${cEmpty}`}
-    style={{flexGrow: len}}
+    style={{flexGrow: len, backgroundColor: randomColor()}}
   />
 )
 
@@ -24,7 +26,7 @@ EmptyCell.propTypes = {
 const ScheduleCell = ({len, title, desc}) => (
   <div
     className={`${cElement} ${cSchedule}`}
-    style={{flexGrow: len}}
+    style={{flexGrow: len, backgroundColor: randomColor()}}
   >
     <h4 className={cTitle}>{title}</h4>
   </div>

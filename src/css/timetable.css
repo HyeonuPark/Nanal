@@ -15,8 +15,8 @@
 
 .cRowHead {
   width: 100%;
-  height: 15%;
-  background-color: color(cyan alpha(30%));
+  height: 12%;
+  background-color: gray(240);
   border: 1px solid white;
   display: flex;
   align-items: center;
